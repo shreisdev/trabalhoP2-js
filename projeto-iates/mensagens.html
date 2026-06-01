@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+  </head>
+
+  <body>
+    <div class="page">
+    <header>
+      <div id="title">
+        <img src="images/barco1.png" alt="ícone de barco" />
+        <div class="headtitle">
+          <h1>Luxo</h1>
+          <h2>Aluguel de iates</h2>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="navmenu">
+          <li><a href="index.html">Página inicial</a></li>
+          <li><a href="aluguel.html">Aluguel de iates</a></li>
+          <li><a href="destinos.html">Destinos</a></li>
+          <li><a href="tripulacao.html">Tripulação</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="pagtitle">
+        <div class="bgtitle"></div>
+        <h2>Mensagens recebidas</h2>
+      </div>
+
+      <div id="tabela-mensagens"></div>
+    </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+      $(document).ready(function () {
+        var mensagens = obterMensagens();
+
+        var tabela = $("<table></table>");
+
+        var thead = $("<thead></thead>");
+        var trHead = $("<tr></tr>");
+        trHead.append($("<th>Nome</th>"));
+        trHead.append($("<th>E-mail</th>"));
+        trHead.append($("<th>Mensagem</th>"));
+        thead.append(trHead);
+        tabela.append(thead);
+
+        var tbody = $("<tbody></tbody>");
+        $.each(mensagens, function (index, obj) {
+          var tr = $("<tr></tr>");
+          tr.append($("<td></td>").text(obj.nome));
+          tr.append($("<td></td>").text(obj.email));
+          tr.append($("<td></td>").text(obj.mensagem));
+          tbody.append(tr);
+        });
+        tabela.append(tbody);
+
+        $("#tabela-mensagens").append(tabela);
+      });
+    </script>
+  </body>
+</html>
